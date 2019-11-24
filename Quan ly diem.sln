@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "Quan ly diem", "..\..\..\..\..\Users\doanh\Source\Repos\Quan ly diem\Quan ly diem.phpproj", "{B837C373-A311-4A93-A155-8CCD9BEB1BC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B837C373-A311-4A93-A155-8CCD9BEB1BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B837C373-A311-4A93-A155-8CCD9BEB1BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A7003F0-A2DE-4497-9F67-3F0D9FA2E273}
+	EndGlobalSection
+EndGlobal

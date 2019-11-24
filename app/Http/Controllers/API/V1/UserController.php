@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 use App\User;
 use App\Http\Resources\User as UserResource;
 
@@ -11,7 +12,6 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('api');
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::paginate());
+        return response()->success(
+            UserResource::collection(User::paginate())
+        );
     }
 
     /**
@@ -32,7 +34,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::create($request->all());
-        return new UserResource($user);
+        if($user != null)
+            return response()->success(new UserResource($user), ["Created new User successfully."], 201);
+        else
+            return response()->error("Can't create new User.");
     }
 
     /**
@@ -43,7 +48,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return new UserResource(User::find($id));
+        $user = User::findOrFail($id);
+        return response()->success(new UserResource($user));
     }
 
     /**
@@ -55,9 +61,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->update($request->all());
-        return new UserResource($user);
+        return response()->success(new UserResource($user));
     }
 
     /**
@@ -68,6 +74,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
+        return response()->success("", "Deleted successfully.");
     }
 }

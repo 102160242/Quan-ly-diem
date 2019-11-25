@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
-use App\User;
+use App\Models\User;
 use App\Http\Resources\User as UserResource;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class UserController extends Controller
 {
@@ -31,8 +31,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
+        if($request->validator->fails())
+        {
+            return response()->error($request->validator->errors()->all(), 422);
+        }
         $user = User::create($request->all());
         if($user != null)
             return response()->success(new UserResource($user), ["Created new User successfully."], 201);
@@ -43,12 +47,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
         return response()->success(new UserResource($user));
     }
 
@@ -56,12 +59,11 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
         $user->update($request->all());
         return response()->success(new UserResource($user));
     }
@@ -69,12 +71,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
         $user->delete();
         return response()->success("", "Deleted successfully.");
     }

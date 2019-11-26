@@ -31,6 +31,7 @@
     <Folder Include="app\Http\Requests\Auth\" />
     <Folder Include="app\Http\Resources\" />
     <Folder Include="app\Helpers\" />
+    <Folder Include="app\Models\" />
     <Folder Include="app\Providers\" />
     <Folder Include="bootstrap\" />
     <Folder Include="bootstrap\cache\" />
@@ -82,6 +83,7 @@
     <Compile Include="app\Http\Middleware\TrimStrings.php" />
     <Compile Include="app\Http\Middleware\TrustProxies.php" />
     <Compile Include="app\Http\Middleware\VerifyCsrfToken.php" />
+    <Compile Include="app\Http\Requests\Auth\LoginRequest.php" />
     <Compile Include="app\Http\Requests\Auth\RegisterRequest.php" />
     <Compile Include="app\Http\Resources\User.php" />
     <Compile Include="app\Providers\AppServiceProvider.php" />
@@ -91,7 +93,7 @@
     <Compile Include="app\Providers\HelperServiceProvider.php" />
     <Compile Include="app\Providers\ResponseMacroServiceProvider.php" />
     <Compile Include="app\Providers\RouteServiceProvider.php" />
-    <Compile Include="app\User.php" />
+    <Compile Include="app\Models\User.php" />
     <Compile Include="bootstrap\app.php" />
     <Compile Include="config\app.php" />
     <Compile Include="config\auth.php" />

@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\UniversityClass;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -61,4 +64,9 @@ class User extends Authenticatable implements JWTSubject
     }
 
     #endregion
+
+    public function universityClasses()
+    {
+        return $this->belongsToMany(UniversityClass::class/*, 'class_user', 'user_id', 'class_id'*/);
+    }
 }

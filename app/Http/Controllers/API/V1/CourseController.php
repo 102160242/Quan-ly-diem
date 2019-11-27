@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API\v1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Http\Resources\User as UserResource;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Resources\Course as CourseResource;
 
-class UserController extends Controller
+class CourseController extends Controller
 {
-    public function __construct()
-    {
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         return response()->success(
-            UserResource::collection(User::with('universityClasses')->paginate())
+            CourseResource::collection(Course::paginate())
         );
     }
 
@@ -31,52 +27,52 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RegisterRequest $request)
+    public function store(Request $request)
     {
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
         }
-        $user = User::create($request->all());
-        if($user != null)
-            return response()->success(new UserResource($user), ["Created new User successfully."], 201);
+        $course = Course::create($request->all());
+        if($course != null)
+            return response()->success(new CourseResource($course), ["Created new Course successfully."], 201);
         else
-            return response()->error("Can't create new User.");
+            return response()->error("Can't create new Course.");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Course $course)
     {
-        return response()->success(new UserResource($user->load('universityClasses')));
+        return response()->success(new CourseResource($course));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Course $course)
     {
-        $user->update($request->all());
-        return response()->success(new UserResource($user));
+        $course->update($request->all());
+        return response()->success(new CourseResource($course));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Course $course)
     {
-        $user->delete();
+        $course->delete();
         return response()->success("", "Deleted successfully.");
     }
 }

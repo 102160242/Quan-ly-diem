@@ -20,12 +20,12 @@ class CreateStudentsTable extends Migration
             $table->dateTime('birthday')->useCurrent();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
-            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('university_class_id');
 
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('university_class_id')->references('id')->on('university_classes');
         });
     }
 

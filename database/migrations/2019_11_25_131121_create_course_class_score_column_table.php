@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersCourseClassesTable extends Migration
+class CreateCourseClassScoreColumnTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersCourseClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_course_classes', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+        Schema::create('course_class_score_column', function (Blueprint $table) {
+            $table->unsignedBigInteger('score_column_id');
             $table->unsignedBigInteger('course_class_id');
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('score_column_id')->references('id')->on('score_columns');
             $table->foreign('course_class_id')->references('id')->on('course_classes');
 
-            $table->unique(['user_id', 'course_class_id']);
+            $table->unique(['score_column_id', 'course_class_id'], 'sc_id_cc_id_is_unique');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUsersCourseClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_course_classes');
+        Schema::dropIfExists('course_classes_score_columns');
     }
 }

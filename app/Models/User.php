@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\UniversityClass;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -41,6 +40,27 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    //public function isAdmin()
+    //{
+    //    return $this->roles()->first()->is_admin;
+    //}
+    //public function isTeacher()
+    //{
+    //    return $this->roles()->first()->is_teacher;
+    //}
+
+    //public function setAdmin($isAdmin = true)
+    //{
+    //    $roles = $this->roles();
+    //    $roles->update(['is_admin' => $isAdmin ]);
+    //}
+
+    //public function setTeacher($isTeacher = true)
+    //{
+    //    $roles = $this->roles();
+    //    $roles->update(['is_teacher' => $isTeacher ]);
+    //}
+
     #region Tymon\JWTAuth\Contracts\JWTSubject Members
 
     /**
@@ -65,8 +85,28 @@ class User extends Authenticatable implements JWTSubject
 
     #endregion
 
+    /**
+     * Summary of universityClasses
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function universityClasses()
     {
         return $this->belongsToMany(UniversityClass::class/*, 'class_user', 'user_id', 'class_id'*/);
+    }
+    /**
+     * Summary of teacherProfile
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function teacherProfile()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+    /**
+     * Summary of roles
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function roles()
+    {
+        return $this->hasOne(UserRole::class)->first();
     }
 }

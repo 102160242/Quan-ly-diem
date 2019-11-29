@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Student;
-use App\Models\User;
 
 class UniversityClass extends Model
 {
@@ -12,7 +10,9 @@ class UniversityClass extends Model
     public $timestamps = false;
     public function students()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class)->withDefault(function () {
+            return Student::collection();
+        });;
     }
     public function headUsers()
     {

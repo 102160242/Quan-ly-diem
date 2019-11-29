@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(UniversityClass::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word . $faker->numberBetween(1, 1000),
         'academic_year' => $faker->dateTimeBetween('-5 years')->format('Y'),
         //'user_id' => rand(1, 10)
     ];

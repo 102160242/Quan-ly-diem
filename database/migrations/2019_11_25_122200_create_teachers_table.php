@@ -15,6 +15,7 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('academic_rank_id')->nullable();
             $table->unsignedInteger('degree_id')->nullable();
             $table->unsignedInteger('specialization_id')->nullable();
@@ -22,6 +23,7 @@ class CreateTeachersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('academic_rank_id')->references('id')->on('academic_ranks')->onDelete('set null');
             $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('set null');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('set null');

@@ -29,6 +29,8 @@ Route::group(['prefix' => 'v1', 'namespace'=>'API\V1'], function(){
         Route::apiResource('classes', 'UniversityClassController');
         Route::apiResource('students', 'StudentController');
         Route::apiResource('courses', 'CourseController');
+        Route::apiResource('teachers', 'TeacherController');
+        Route::apiResource('courseclasses', 'CourseClassController');
     });
 });
 

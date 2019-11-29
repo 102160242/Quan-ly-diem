@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Course::class, function (Faker $faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->word . $faker->numberBetween(1, 1000)
     ];
 });

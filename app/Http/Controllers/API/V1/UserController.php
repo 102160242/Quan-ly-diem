@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\User as UserResource;
 use App\Http\Requests\Auth\RegisterRequest;
-
+use  App\Models\UserRole;
 class UserController extends Controller
 {
     public function __construct()
@@ -52,6 +52,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->roles()->setTeacher(true);
         return response()->success(new UserResource($user->load('universityClasses')));
     }
 

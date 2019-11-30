@@ -19,17 +19,11 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'isAdmin' => $this->roles()->isAdmin(),
-            'isTeacher' => $this->roles()->isTeacher(),
+            'isAdmin' => $this->roles->isAdmin(),
+            'isTeacher' => $this->roles->isTeacher(),
             'university_classes' => ClassResource::collection($this->whenLoaded('university_classes')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
     }
-    //public function with($request)
-    //{
-    //    return [
-    //        'university_classes' => ClassResource::collection($this->whenLoaded('university_classes')),
-    //        ];
-    //}
 }

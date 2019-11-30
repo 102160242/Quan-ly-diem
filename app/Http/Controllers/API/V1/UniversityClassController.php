@@ -35,9 +35,9 @@ class UniversityClassController extends Controller
         }
         $class = UniversityClass::create($request->all());
         if($class != null)
-            return response()->success(new UniversityClassResource($class), ["Created new Class successfully."], 201);
+            return response()->success(new UniversityClassResource($class), ["Tạo Lớp mới thành công."], 201);
         else
-            return response()->error("Can't create new Class.");
+            return response()->error("Không thể tạo Lớp mới.");
     }
 
     /**
@@ -73,6 +73,6 @@ class UniversityClassController extends Controller
     public function destroy(UniversityClass $class)
     {
         $class->delete();
-        return response()->success("", "Deleted successfully.");
+        return response()->success("", "Đã xoá thành công.");
     }
 }

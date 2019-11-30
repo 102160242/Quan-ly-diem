@@ -35,9 +35,9 @@ class TeacherController extends Controller
         }
         $class = Teacher::create($request->all());
         if($class != null)
-            return response()->success(new Teacher($class), ["Created new Teacher successfully."], 201);
+            return response()->success(new Teacher($class), ["Tạo Giảng viên mới thành công."], 201);
         else
-            return response()->error("Can't create new Teacher.");
+            return response()->error("Không thể tạo Giảng viên mới.");
     }
 
     /**
@@ -73,6 +73,6 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         $teacher->delete();
-        return response()->success("", "Deleted successfully.");
+        return response()->success("", "Đã xoá thành công.");
     }
 }

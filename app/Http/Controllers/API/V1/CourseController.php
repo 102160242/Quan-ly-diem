@@ -35,9 +35,9 @@ class CourseController extends Controller
         }
         $course = Course::create($request->all());
         if($course != null)
-            return response()->success(new CourseResource($course), ["Created new Course successfully."], 201);
+            return response()->success(new CourseResource($course), ["Tạo Học phần mới thành công."], 201);
         else
-            return response()->error("Can't create new Course.");
+            return response()->error("Không thể tạo học phần mới.");
     }
 
     /**
@@ -73,6 +73,6 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return response()->success("", "Deleted successfully.");
+        return response()->success("", "Đã xoá thành công.");
     }
 }

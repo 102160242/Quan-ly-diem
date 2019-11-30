@@ -36,9 +36,9 @@ class StudentController extends Controller
         }
         $student = Student::create($request->all());
         if($student != null)
-            return response()->success(new StudentResource($student), ["Created new Student successfully."], 201);
+            return response()->success(new StudentResource($student), ["Tạo Sinh viên mới thành công."], 201);
         else
-            return response()->error("Can't create new Student.");
+            return response()->error("Không thể tạo Sinh viên mới.");
     }
 
     /**
@@ -74,6 +74,6 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return response()->success("", "Deleted successfully.");
+        return response()->success("", "Đã xoá thành công.");
     }
 }

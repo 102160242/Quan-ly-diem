@@ -24,7 +24,7 @@ class AuthController extends Controller
 
             $token = auth()->login($user);
 
-            return response()->success(["token" => $token], ["Registered new account successfully."], 201);
+            return response()->success(["token" => $token], ["Đăng ký Tài khoản mới thành công."], 201);
         }
     }
 
@@ -38,10 +38,10 @@ class AuthController extends Controller
             $credentials = $request->only(['email', 'password']);
 
             if (!$token = auth()->attempt($credentials)) {
-                return response()->error(["The email or password you have entered is wrong."]);
+                return response()->error(["Email hoặc mật khẩu bạn nhập không chính xác."]);
             }
 
-            return response()->success(["token" => $token], ["Logged in successfully."]);
+            return response()->success(["token" => $token], ["Đăng nhập thành công."]);
         }
     }
 }

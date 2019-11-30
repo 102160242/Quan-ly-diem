@@ -39,9 +39,9 @@ class UserController extends Controller
         }
         $user = User::create($request->all());
         if($user != null)
-            return response()->success(new UserResource($user), ["Created new User successfully."], 201);
+            return response()->success(new UserResource($user), ["Tạo Người dùng mới thành công."], 201);
         else
-            return response()->error("Can't create new User.");
+            return response()->error("Không thể tạo Người dùng mới.");
     }
 
     /**
@@ -78,6 +78,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->success("", "Deleted successfully.");
+        return response()->success("", "Đã xoá thành công.");
     }
 }

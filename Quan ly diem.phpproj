@@ -73,6 +73,7 @@
     <Compile Include="app\Http\Controllers\API\V1\CourseController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreColumnController.php" />
     <Compile Include="app\Http\Controllers\API\V1\StudentController.php" />
+    <Compile Include="app\Http\Controllers\API\V1\TeacherController.php" />
     <Compile Include="app\Http\Controllers\API\V1\UniversityClassController.php" />
     <Compile Include="app\Http\Controllers\API\V1\UserController.php" />
     <Compile Include="app\Http\Controllers\Auth\ConfirmPasswordController.php" />
@@ -96,11 +97,16 @@
     <Compile Include="app\Http\Resources\Course.php" />
     <Compile Include="app\Http\Resources\CourseClass.php" />
     <Compile Include="app\Http\Resources\Student.php" />
+    <Compile Include="app\Http\Resources\Teacher.php" />
     <Compile Include="app\Http\Resources\UniversityClass.php" />
     <Compile Include="app\Http\Resources\User.php" />
+    <Compile Include="app\Models\AcademicRank.php" />
     <Compile Include="app\Models\Course.php" />
     <Compile Include="app\Models\CourseClass.php" />
+    <Compile Include="app\Models\Degree.php" />
+    <Compile Include="app\Models\Faculty.php" />
     <Compile Include="app\Models\ScoreColumn.php" />
+    <Compile Include="app\Models\Specialization.php" />
     <Compile Include="app\Models\Student.php" />
     <Compile Include="app\Models\Teacher.php" />
     <Compile Include="app\Models\UniversityClass.php" />

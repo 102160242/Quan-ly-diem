@@ -52,10 +52,10 @@ class RegisterRequest extends FormRequest
     {
         return [
             'required' => 'Vui lòng nhập :attribute',
-            'max:255' => ':attribute không được vượt quá 255 ký tự',
+            'max' => ':attribute không được vượt quá :max ký tự',
             'unique' => ':attribute đã được đăng ký sử dụng',
             'string' => ':attribute phải là một chuỗi',
-            'min:6' => ':attribute phải có ít nhất 6 ký tự',
+            'min' => ':attribute phải có ít nhất :min ký tự',
             'confirmed' => 'Xác nhận :attribute không trùng khớp'
         ];
     }

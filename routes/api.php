@@ -14,7 +14,10 @@ use Illuminate\Http\Request;
  */
 
 /* API v1 */
-Route::group(['prefix' => 'v1', 'namespace'=>'API\V1'], function(){
+Route::group([
+    'prefix' => 'v1',
+    'namespace'=>'API\V1'],
+    function(){
 
     // api/auth
     Route::group(['prefix'=>'auth'], function(){
@@ -25,6 +28,7 @@ Route::group(['prefix' => 'v1', 'namespace'=>'API\V1'], function(){
     // Yeu cau xac thuc
     //Route::group(['middleware' => 'jwt.auth'], function () {
     Route::group([], function () {
+        Route::get('users/me', 'UserController@me');
         Route::apiResource('users', 'UserController');
         Route::apiResource('classes', 'UniversityClassController');
         Route::apiResource('students', 'StudentController');

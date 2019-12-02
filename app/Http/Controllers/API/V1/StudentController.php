@@ -18,7 +18,7 @@ class StudentController extends Controller
     public function index()
     {
         return response()->success(
-            StudentResource::collection(Student::with('universityClass')->paginate())
+            StudentResource::collection(Student::with('universityClass')->get())
         );
     }
 

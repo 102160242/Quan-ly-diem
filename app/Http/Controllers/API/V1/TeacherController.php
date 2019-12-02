@@ -17,7 +17,7 @@ class TeacherController extends Controller
     public function index()
     {
         return response()->success(
-            TeacherResource::collection(Teacher::with('user')->paginate())
+            TeacherResource::collection(Teacher::with('user')->get())
         );
     }
 

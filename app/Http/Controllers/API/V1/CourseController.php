@@ -17,7 +17,7 @@ class CourseController extends Controller
     public function index()
     {
         return response()->success(
-            CourseResource::collection(Course::paginate())
+            CourseResource::collection(Course::get())
         );
     }
 

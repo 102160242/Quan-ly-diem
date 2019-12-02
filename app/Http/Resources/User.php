@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\UniversityClass as ClassResource;
+use Illuminate\Support\Facades\Storage;
 
 class User extends JsonResource
 {
@@ -19,8 +20,9 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'isAdmin' => $this->roles->isAdmin(),
-            'isTeacher' => $this->roles->isTeacher(),
+            'avatar_url' => asset(Storage::url($this->avatar)),
+            'is_admin' => $this->roles->isAdmin(),
+            'is_teacher' => $this->roles->isTeacher(),
             'university_classes' => ClassResource::collection($this->whenLoaded('university_classes')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

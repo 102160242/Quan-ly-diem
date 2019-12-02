@@ -17,7 +17,7 @@ class UniversityClassController extends Controller
     public function index()
     {
         return response()->success(
-            UniversityClassResource::collection(UniversityClass::with('headUsers')->paginate())
+            UniversityClassResource::collection(UniversityClass::with('headUsers')->get())
         );
     }
 

@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         return response()->success(
-            UserResource::collection(User::with('universityClasses')->paginate())
+            UserResource::collection(User::with('universityClasses')->get())
         );
     }
 

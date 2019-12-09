@@ -20,7 +20,7 @@ class Student extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "gender" => $this->gender,
-            "birthday" => $this->birthday,
+            "birthday" => \Carbon\Carbon::parse($this->birthday)->format('d/m/Y'),
             "phone_number" => $this->phone_number,
             "email" => $this->email,
             "university_class" => new ClassResource($this->whenLoaded('universityClass')),

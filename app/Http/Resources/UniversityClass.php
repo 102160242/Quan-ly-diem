@@ -22,6 +22,7 @@ class UniversityClass extends JsonResource
             'academic_year' => $this->academic_year,
             'head_users' => UserResource::collection($this->whenLoaded('headUsers')),
             'students' => StudentResource::collection($this->whenLoaded('students')),
+            'total_students' => $this->totalStudents(),
         ];
     }
 }

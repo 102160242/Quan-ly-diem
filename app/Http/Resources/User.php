@@ -19,6 +19,9 @@ class User extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'gender' => $this->gender,
+            'birthday' => \Carbon\Carbon::parse($this->birthday)->format('d/m/Y'),
+            'phone_number' => $this->phone_number,
             'email' => $this->email,
             'avatar_url' => asset(Storage::url($this->avatar)),
             'is_admin' => $this->roles->isAdmin(),

@@ -34,6 +34,8 @@ Route::group([
         Route::apiResource('students', 'StudentController');
         Route::apiResource('courses', 'CourseController');
         Route::apiResource('teachers', 'TeacherController');
+
+        Route::get('courseclasses/meta', 'CourseClassController@meta');
         Route::apiResource('courseclasses', 'CourseClassController');
     });
 });

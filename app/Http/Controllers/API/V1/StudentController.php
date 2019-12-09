@@ -15,10 +15,12 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return response()->success(
-            StudentResource::collection(Student::with('universityClass')->get())
+            StudentResource::collection(Student::whereHas('universityClass', function ($query) use($request){
+                $query->where($request->only(['academic_year']));
+            })->with('universityClass')->get())
         );
     }
 
@@ -75,5 +77,13 @@ class StudentController extends Controller
     {
         $student->delete();
         return response()->success("", "Đã xoá thành công.");
+    }
+    /**
+     * Summary of meta
+     */
+    public function meta()
+    {
+        $data = Student::meta();
+        return response()->success($data);
     }
 }

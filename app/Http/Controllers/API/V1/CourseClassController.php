@@ -81,7 +81,6 @@ class CourseClassController extends Controller
      */
     public function meta()
     {
-        $data = array();
         $data = CourseClass::meta();
         return response()->success($data);
     }

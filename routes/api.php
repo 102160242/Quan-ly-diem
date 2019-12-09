@@ -31,6 +31,8 @@ Route::group([
         Route::get('users/me', 'UserController@me');
         Route::apiResource('users', 'UserController');
         Route::apiResource('classes', 'UniversityClassController');
+
+        Route::get('students/meta', 'StudentController@meta');
         Route::apiResource('students', 'StudentController');
         Route::apiResource('courses', 'CourseController');
         Route::apiResource('teachers', 'TeacherController');

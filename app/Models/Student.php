@@ -14,4 +14,14 @@ class Student extends Model
             return collect(new UniversityClass);
         })*/;
     }
+    /**
+     * Summary of meta
+     */
+    public static function meta()
+    {
+        $data = [];
+        $data['from'] = UniversityClass::min('academic_year');
+        $data['to'] = UniversityClass::max('academic_year');
+        return $data;
+    }
 }

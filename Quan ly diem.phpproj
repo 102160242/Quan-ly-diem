@@ -103,7 +103,6 @@
     <Compile Include="app\Models\AcademicRank.php" />
     <Compile Include="app\Models\Course.php" />
     <Compile Include="app\Models\CourseClass.php" />
-    <Compile Include="app\Models\CourseClass_User.php" />
     <Compile Include="app\Models\Degree.php" />
     <Compile Include="app\Models\Faculty.php" />
     <Compile Include="app\Models\ScoreColumn.php" />

@@ -72,6 +72,7 @@
     <Compile Include="app\Http\Controllers\API\V1\CourseClassController.php" />
     <Compile Include="app\Http\Controllers\API\V1\CourseController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreColumnController.php" />
+    <Compile Include="app\Http\Controllers\API\V1\ScoreController.php" />
     <Compile Include="app\Http\Controllers\API\V1\StudentController.php" />
     <Compile Include="app\Http\Controllers\API\V1\TeacherController.php" />
     <Compile Include="app\Http\Controllers\API\V1\UniversityClassController.php" />
@@ -105,6 +106,7 @@
     <Compile Include="app\Models\CourseClass.php" />
     <Compile Include="app\Models\Degree.php" />
     <Compile Include="app\Models\Faculty.php" />
+    <Compile Include="app\Models\Score.php" />
     <Compile Include="app\Models\ScoreColumn.php" />
     <Compile Include="app\Models\Specialization.php" />
     <Compile Include="app\Models\Student.php" />

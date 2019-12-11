@@ -47,8 +47,10 @@ class CourseClassController extends Controller
      * @param  \App\Models\CourseClass  $courseClass
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseClass $courseClass)
+    public function show($id)
     {
+        $courseClass = CourseClass::find($id);
+        //$courseClass->getAllStudentsScores();
         return response()->success(new CourseClassResource($courseClass));
     }
 

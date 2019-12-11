@@ -16,8 +16,10 @@ class CreateScoreColumnsTable extends Migration
         Schema::create('score_columns', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('score_id');
+            $table->unsignedBigInteger('course_class_id');
             $table->float('ratio');
+
+            $table->foreign('course_class_id')->references('id')->on('course_classes');
         });
     }
 

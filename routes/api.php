@@ -39,6 +39,7 @@ Route::group([
 
         Route::get('courseclasses/meta', 'CourseClassController@meta');
         Route::apiResource('courseclasses', 'CourseClassController');
+        Route::apiResource('scores', 'ScoreController')->only(['index', 'create']);
     });
 });
 

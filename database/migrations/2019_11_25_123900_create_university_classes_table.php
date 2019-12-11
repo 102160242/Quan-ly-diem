@@ -16,7 +16,10 @@ class CreateUniversityClassesTable extends Migration
         Schema::create('university_classes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
+            $table->unsignedInteger('faculty_id')->nullable();
             $table->integer('academic_year');
+
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
             //$table->unsignedBigInteger('user_id');
 
             //$table->foreign('user_id')->references('id')->on('users');

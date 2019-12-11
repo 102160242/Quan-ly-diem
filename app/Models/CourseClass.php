@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class CourseClass extends Model
 {
+    public function getAllStudentsScores() // Lấy bảng điểm cả lớp
+    {
+        $data = [];
+        foreach($this->students as $student)
+        {
+            $data[] = array("id" => $student->id, "name" => $student->name, "scores" => $student->getCourseClassScores($this->id));
+        }
+        return $data;
+    }
     public function students()
     {
         return $this->belongsToMany(Student::class);
@@ -18,6 +27,10 @@ class CourseClass extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+    public function scoreColumns()
+    {
+        return $this->hasMany(ScoreColumn::class);
     }
     public static function meta()
     {

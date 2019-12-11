@@ -17,16 +17,16 @@ class CreateScoresTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('score_column_id');
             $table->unsignedBigInteger('student_id');
-            $table->float('score');
+            $table->float('score')->nullable();
 
             $table->foreign('score_column_id')->references('id')->on('score_columns');
             $table->foreign('student_id')->references('id')->on('students');
 
             $table->unique(['student_id', 'score_column_id']);
         });
-        Schema::table('score_columns', function (Blueprint $table) {
+        /*Schema::table('score_columns', function (Blueprint $table) {
             $table->foreign('score_id')->references('id')->on('scores');
-        });
+        });*/
     }
 
     /**

@@ -14,6 +14,10 @@ class UniversityClass extends Model
             return Student::collection();
         });*/;
     }
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class);
+    }
     public function headUsers()
     {
         return $this->belongsToMany(User::class/*, 'class_user', 'class_id', 'user_id'*/);

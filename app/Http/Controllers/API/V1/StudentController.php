@@ -18,7 +18,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         return response()->success(
-            StudentResource::collection(Student::whereHas('universityClass', function ($query) use($request){
+            StudentResource::collection(Student::where($request->only(['university_class_id']))->whereHas('universityClass', function ($query) use($request){
                 $query->where($request->only(['academic_year']));
             })->with('universityClass')->get())
         );

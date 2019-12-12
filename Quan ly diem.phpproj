@@ -141,6 +141,7 @@
     <Compile Include="config\view.php" />
     <Compile Include="database\factories\CourseClassFactory.php" />
     <Compile Include="database\factories\CourseFactory.php" />
+    <Compile Include="database\factories\ScoreColumnFactory.php" />
     <Compile Include="database\factories\StudentFactory.php" />
     <Compile Include="database\factories\TeacherFactory.php" />
     <Compile Include="database\factories\UniversityClassFactory.php" />
@@ -165,9 +166,13 @@
     <Compile Include="database\migrations\2019_11_25_131000_create_score_columns_table.php" />
     <Compile Include="database\migrations\2019_11_25_131121_create_course_class_score_column_table.php" />
     <Compile Include="database\migrations\2019_11_25_132228_create_scores_table.php" />
+    <Compile Include="database\seeds\AcademicRanksTableSeeder.php" />
     <Compile Include="database\seeds\CourseClassesTableSeeder.php" />
     <Compile Include="database\seeds\CoursesTableSeeder.php" />
     <Compile Include="database\seeds\DatabaseSeeder.php" />
+    <Compile Include="database\seeds\DegreesTableSeeder.php" />
+    <Compile Include="database\seeds\FacultiesTableSeeder.php" />
+    <Compile Include="database\seeds\ScoreColumnsTableSeeder.php" />
     <Compile Include="database\seeds\StudentsTableSeeder.php" />
     <Compile Include="database\seeds\UniversityClassesTableSeeder.php" />
     <Compile Include="database\seeds\UsersTableSeeder.php" />

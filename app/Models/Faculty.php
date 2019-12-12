@@ -8,4 +8,8 @@ class Faculty extends Model
 {
     public $timestamps = false;
     protected $fillable = ['name'];
+    public function universityClasses()
+    {
+        return $this->hasMany(UniversityClass::class);
+    }
 }

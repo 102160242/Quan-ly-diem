@@ -26,8 +26,8 @@ Route::group([
     });
 
     // Yeu cau xac thuc
-    //Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::group([], function () {
+    Route::group(['middleware' => 'jwt.auth'], function () {
+    //Route::group([], function () {
         Route::get('users/me', 'UserController@me');
         Route::apiResource('users', 'UserController');
         Route::apiResource('classes', 'UniversityClassController');

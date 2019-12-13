@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\UniversityClass;
 use Illuminate\Http\Request;
 use App\Http\Resources\UniversityClass as UniversityClassResource;
-
+use Gate;
+use Illuminate\Support\Facades\Auth;
 class UniversityClassController extends Controller
 {
     /**
@@ -16,8 +17,13 @@ class UniversityClassController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('university_classes.viewAny')) return $this->notAuthorized();
+
+        if(Auth::user()->roles->isAdmin()) $universityClass = UniversityClass::with('headUsers');
+        else $universityClass = Auth::user()->universityClasses()->with('headUsers');
+
         return response()->success(
-            UniversityClassResource::collection(UniversityClass::with('headUsers')->get())
+            UniversityClassResource::collection($universityClass->get())
         );
     }
 
@@ -29,6 +35,7 @@ class UniversityClassController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('university_classes.create')) return $this->notAuthorized();
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -48,6 +55,7 @@ class UniversityClassController extends Controller
      */
     public function show(UniversityClass $class)
     {
+        if(Gate::denies('university_classes.view', $class)) return $this->notAuthorized();
         return response()->success(new UniversityClassResource($class->load('headUsers', 'students')));
     }
 
@@ -60,6 +68,7 @@ class UniversityClassController extends Controller
      */
     public function update(Request $request, UniversityClass $class)
     {
+        if(Gate::denies('university_classes.update', $class)) return $this->notAuthorized();
         $class->update($request->all());
         return response()->success(new UniversityClassResource($class));
     }
@@ -72,6 +81,7 @@ class UniversityClassController extends Controller
      */
     public function destroy(UniversityClass $class)
     {
+        if(Gate::denies('university_classes.delete', $class)) return $this->notAuthorized();
         $class->delete();
         return response()->success("", "Đã xoá thành công.");
     }

@@ -9,11 +9,9 @@ use App\Http\Resources\User as UserResource;
 use App\Http\Requests\Auth\RegisterRequest;
 use  App\Models\UserRole;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 class UserController extends Controller
 {
-    public function __construct()
-    {
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('users.viewAny')) return $this->notAuthorized();
         return response()->success(
             UserResource::collection(User::with('universityClasses')->get())
         );
@@ -34,6 +33,7 @@ class UserController extends Controller
      */
     public function store(RegisterRequest $request)
     {
+        if(Gate::denies('users.create')) return $this->notAuthorized();
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -57,6 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if(Gate::denies('users.view', $user)) return $this->notAuthorized();
         return response()->success(new UserResource($user->load('universityClasses')));
     }
     public function me()
@@ -72,6 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if(Gate::denies('users.update', $user)) return $this->notAuthorized();
         $user->update($request->all());
         return response()->success(new UserResource($user));
     }
@@ -84,6 +86,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if(Gate::denies('users.delete', $user)) return $this->notAuthorized();
         $user->delete();
         return response()->success("", "Đã xoá thành công.");
     }

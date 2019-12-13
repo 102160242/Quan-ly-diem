@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Resources\Course as CourseResource;
+use Illuminate\Support\Facades\Auth;
+use Gate;
 
 class CourseController extends Controller
 {
@@ -16,6 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('courses.viewAny')) return $this->notAuthorized();
         return response()->success(
             CourseResource::collection(Course::get())
         );
@@ -29,6 +32,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('courses.create')) return $this->notAuthorized();
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -48,6 +52,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        if(Gate::denies('courses.view', $course)) return $this->notAuthorized();
         return response()->success(new CourseResource($course));
     }
 
@@ -60,6 +65,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        if(Gate::denies('courses.update', $course)) return $this->notAuthorized();
         $course->update($request->all());
         return response()->success(new CourseResource($course));
     }
@@ -72,6 +78,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        if(Gate::denies('courses.delete', $course)) return $this->notAuthorized();
         $course->delete();
         return response()->success("", "Đã xoá thành công.");
     }

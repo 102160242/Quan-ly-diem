@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Resources\Teacher as TeacherResource;
+use Gate;
 
 class TeacherController extends Controller
 {
@@ -16,6 +17,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('teachers.viewAny')) return $this->notAuthorized();
         return response()->success(
             TeacherResource::collection(Teacher::with('user')->get())
         );
@@ -29,6 +31,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('teachers.create')) return $this->notAuthorized();
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -48,6 +51,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
+        if(Gate::denies('teachers.view', $teacher)) return $this->notAuthorized();
         return response()->success(new TeacherResource($teacher->load('courseClasses', 'user')));
     }
 
@@ -60,6 +64,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
+        if(Gate::denies('teachers.update', $teacher)) return $this->notAuthorized();
         $teacher->update($request->all());
         return response()->success(new TeacherResource($teacher));
     }
@@ -72,6 +77,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        if(Gate::denies('teachers.delete', $teacher)) return $this->notAuthorized();
         $teacher->delete();
         return response()->success("", "Đã xoá thành công.");
     }

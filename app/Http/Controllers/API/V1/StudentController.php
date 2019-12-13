@@ -7,7 +7,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Resources\Student as StudentResource;
 use App\Http\Requests\Students\Create as CreateStudentRequest;
-
+use Gate;
 class StudentController extends Controller
 {
     /**
@@ -17,6 +17,7 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
+        if(Gate::denies('students.viewAny')) return $this->notAuthorized();
         return response()->success(
             StudentResource::collection(Student::where($request->only(['university_class_id']))->whereHas('universityClass', function ($query) use($request){
                 $query->where($request->only(['academic_year']));
@@ -32,6 +33,7 @@ class StudentController extends Controller
      */
     public function store(CreateStudentRequest $request)
     {
+        if(Gate::denies('students.create')) return $this->notAuthorized();
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -51,6 +53,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        if(Gate::denies('students.view', $student)) return $this->notAuthorized();
         return response()->success(new StudentResource($student->load('universityClass')));
     }
 
@@ -63,6 +66,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        if(Gate::denies('students.update', $student)) return $this->notAuthorized();
         $student->update($request->all());
         return response()->success(new StudentResource($student));
     }
@@ -75,6 +79,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        if(Gate::denies('students.delete', $student)) return $this->notAuthorized();
         $student->delete();
         return response()->success("", "Đã xoá thành công.");
     }

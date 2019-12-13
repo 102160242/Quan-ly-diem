@@ -13,4 +13,8 @@ class ScoreColumn extends Model
     {
         return $this->hasMany(Score::class);
     }
+    public function courseClass()
+    {
+        return $this->belongsTo(CourseClass::class);
+    }
 }

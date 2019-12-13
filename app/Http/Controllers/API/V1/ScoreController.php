@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Score;
 use Illuminate\Http\Request;
+use Gate;
 
 class ScoreController extends Controller
 {

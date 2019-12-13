@@ -82,9 +82,9 @@ class CourseClassController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $courseClass = CourseClass::find($id);
         if(Gate::denies('course_classes.update', $courseClass)) return $this->notAuthorized();
 
-        $courseClass = CourseClass::find($id);
         $courseClass->update($request->except('score_columns') );
         $columns = $request->get('score_columns');
         foreach($columns as $column){

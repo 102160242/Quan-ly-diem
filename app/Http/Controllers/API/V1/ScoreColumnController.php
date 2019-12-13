@@ -60,6 +60,7 @@ class ScoreColumnController extends Controller
      */
     public function destroy(ScoreColumn $scoreColumn)
     {
-        //
+        $scoreColumn->delete();
+        return response()->success("", "Đã xoá thành công.");
     }
 }

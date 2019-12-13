@@ -9,6 +9,7 @@ use App\Http\Resources\User as UserResource;
 use App\Http\Requests\Auth\RegisterRequest;
 use  App\Models\UserRole;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 class UserController extends Controller
 {
     public function __construct()
@@ -34,17 +35,30 @@ class UserController extends Controller
      */
     public function store(RegisterRequest $request)
     {
+        //var_dump($request);
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
         }
-        $user = User::create([
-          'name' => $request->name,
-          'email' => $request->email,
-          'password' => bcrypt($request->password),
-        ]);
+        $params = $request->only(['name','gender','birthday','phone_number','email','password','avatar']);
+        $file = $request->file('avatar');
+        $path = $file->storeAs('public/avatars', md5($request->get('email')).".".$file->getClientOriginalExtension());
+        $params['avatar'] = $path;
+        $params['password'] = bcrypt($params['password']);
+        $params['birthday'] = Carbon::parse($params['birthday']);
+        $user = User::create($params);
         if($user != null)
+        {
+            //if(true)
+            //{
+            if($request->get('is_teacher'))
+                $user->roles->setTeacher(1);
+            if($request->get('is_admin'))
+                $user->roles->setAdmin(1);
+
+            //}
             return response()->success(new UserResource($user), ["Tạo Người dùng mới thành công."], 201);
+        }
         else
             return response()->error("Không thể tạo Người dùng mới.");
     }
@@ -72,7 +86,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->except(['is_teacher', 'is_admin', '_method']));
+        if($request->get('is_teacher'))
+            $user->roles->setTeacher();
+        else
+            $user->roles->unsetTeacher();
+        if($request->get('is_admin'))
+            $user->roles->setAdmin();
+        else
+            $user->roles->unsetAdmin();
         return response()->success(new UserResource($user));
     }
 

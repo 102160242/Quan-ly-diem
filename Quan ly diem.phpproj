@@ -97,6 +97,7 @@
     <Compile Include="app\Http\Requests\Students\Create.php" />
     <Compile Include="app\Http\Resources\Course.php" />
     <Compile Include="app\Http\Resources\CourseClass.php" />
+    <Compile Include="app\Http\Resources\ScoreColumn.php" />
     <Compile Include="app\Http\Resources\Student.php" />
     <Compile Include="app\Http\Resources\Teacher.php" />
     <Compile Include="app\Http\Resources\UniversityClass.php" />

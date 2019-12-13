@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\CourseClass;
+use App\Models\ScoreColumn;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseClass as CourseClassResource;
 
@@ -30,13 +31,19 @@ class CourseClassController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->validator->fails())
+        /*if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
-        }
-        $courseClass = CourseClass::create($request->all());
+        }*/
+        $courseClass = CourseClass::create($request->except(['score_columns']));
         if($courseClass != null)
+        {
+            $columns = $request->get('score_columns');
+            foreach($columns as $column){
+                $courseClass->scoreColumns()->create($column);
+            }
             return response()->success(new CourseClassResource($courseClass), ["Tạo Lớp học phần mới thành công."], 201);
+        }
         else
             return response()->error("Không thể tạo Lớp học phần mới.");
     }
@@ -51,7 +58,7 @@ class CourseClassController extends Controller
     {
         $courseClass = CourseClass::find($id);
         //$courseClass->getAllStudentsScores();
-        return response()->success(new CourseClassResource($courseClass));
+        return response()->success(new CourseClassResource($courseClass->load('course'), $courseClass->load('scoreColumns')));
     }
 
     /**
@@ -61,9 +68,26 @@ class CourseClassController extends Controller
      * @param  \App\Models\CourseClass  $courseClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseClass $courseClass)
+    public function update(Request $request, $id)
     {
-        $courseClass->update($request->all());
+        //if(isset($request['del']))
+        //{
+         //   ScoreColumn::find($request['id'])->delete();
+        //}
+        //else
+        //{
+            $courseClass = CourseClass::find($id);
+            $courseClass->update($request->except('score_columns') );
+            $columns = $request->get('score_columns');
+            foreach($columns as $column){
+                if(!isset($column['id']))
+                    $courseClass->scoreColumns()->create($column);
+                else
+                {
+                    ScoreColumn::findOrFail($column['id'])->update($column);
+                }
+            }
+        //}
         return response()->success(new CourseClassResource($courseClass));
     }
 

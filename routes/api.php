@@ -40,6 +40,7 @@ Route::group([
         Route::get('courseclasses/meta', 'CourseClassController@meta');
         Route::apiResource('courseclasses', 'CourseClassController');
         Route::apiResource('scores', 'ScoreController')->only(['index', 'store']);
+        Route::apiResource('score_columns', 'ScoreColumnController')->only(['destroy']);
     });
 });
 

@@ -34,9 +34,19 @@ class UserRole extends Model
         $this->is_admin = $isAdmin;
         $this->save();
     }
+    public function unsetAdmin()
+    {
+        $this->is_admin = 0;
+        $this->save();
+    }
     public function setTeacher($isTeacher = true)
     {
         $this->is_teacher = $isTeacher;
+        $this->save();
+    }
+    public function unsetTeacher()
+    {
+        $this->is_teacher = 0;
         $this->save();
     }
 

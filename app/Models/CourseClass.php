@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class CourseClass extends Model
 {
+
+    protected $fillable = [
+        'course_id', 'name', 'credits', 'year', 'teacher_id', 'semester'
+    ];
+
     public function getAllStudentsScores() // Lấy bảng điểm cả lớp
     {
         $data = [];

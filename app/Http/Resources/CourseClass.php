@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Course as CourseResource;
 use App\Http\Resources\Teacher as TeacherResource;
+use App\Http\Resources\ScoreColumn as ScoreColumnResource;
 
 class CourseClass extends JsonResource
 {
@@ -28,6 +29,7 @@ class CourseClass extends JsonResource
                 ]]
            ),
             $this->mergeWhen($this->relationLoaded('teacher'), [ "teacher" => new TeacherResource($this->teacher)]),
+            "score_columns" => new ScoreColumnResource($this->whenLoaded('scoreColumns')),
             "total_students" => $this->students->count(),
             "credits" => $this->credits,
             "year" => $this->year,

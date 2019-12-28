@@ -68,8 +68,8 @@ class UserObserver
     }
     public function deleleting(User $user)
     {
-        $user->roles->delete();
-        if(!!$user->teacherProfile)
-            $user->teacherProfile->delete();
+        //$user->roles->delete();
+        if(!!$user->teacherProfile);
+           // $user->teacherProfile->delete();
     }
 }

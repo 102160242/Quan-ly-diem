@@ -19,7 +19,7 @@ class CreateScoreColumnsTable extends Migration
             $table->unsignedBigInteger('course_class_id');
             $table->float('ratio');
 
-            $table->foreign('course_class_id')->references('id')->on('course_classes');
+            $table->foreign('course_class_id')->references('id')->on('course_classes')->onDelete('cascade');
         });
     }
 

@@ -13,15 +13,15 @@ class CreateCourseClassUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_class_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('course_class_id');
+        //Schema::create('course_class_user', function (Blueprint $table) {
+        //    $table->unsignedBigInteger('user_id');
+        //    $table->unsignedBigInteger('course_class_id');
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('course_class_id')->references('id')->on('course_classes');
+        //    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //    $table->foreign('course_class_id')->references('id')->on('course_classes')->onDelete('cascade');
 
-            $table->unique(['user_id', 'course_class_id']);
-        });
+        //    $table->unique(['user_id', 'course_class_id']);
+        //});
     }
 
     /**

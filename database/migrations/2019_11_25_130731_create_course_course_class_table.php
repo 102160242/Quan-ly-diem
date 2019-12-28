@@ -17,8 +17,8 @@ class CreateCourseCourseClassTable extends Migration
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('course_class_id');
 
-            $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('course_class_id')->references('id')->on('course_classes');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('course_class_id')->references('id')->on('course_classes')->onDelete('cascade');
 
             $table->unique(['course_id', 'course_class_id']);
         });

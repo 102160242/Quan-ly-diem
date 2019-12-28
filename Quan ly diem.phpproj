@@ -75,10 +75,16 @@
   <ItemGroup>
     <Compile Include="app\Console\Kernel.php" />
     <Compile Include="app\Exceptions\Handler.php" />
+    <Compile Include="app\Exports\CourseClassesExport.php" />
+    <Compile Include="app\Exports\CoursesExport.php" />
     <Compile Include="app\Exports\StudentsExport.php" />
+    <Compile Include="app\Exports\UniversityClassesExport.php" />
+    <Compile Include="app\Exports\UsersExport.php" />
     <Compile Include="app\Http\Controllers\API\V1\AuthController.php" />
     <Compile Include="app\Http\Controllers\API\V1\CourseClassController.php" />
     <Compile Include="app\Http\Controllers\API\V1\CourseController.php" />
+    <Compile Include="app\Http\Controllers\API\V1\DashboardController.php" />
+    <Compile Include="app\Http\Controllers\API\V1\ExportController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ImportController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreColumnController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreController.php" />
@@ -111,7 +117,11 @@
     <Compile Include="app\Http\Resources\Teacher.php" />
     <Compile Include="app\Http\Resources\UniversityClass.php" />
     <Compile Include="app\Http\Resources\User.php" />
+    <Compile Include="app\Imports\CourseClassesImport.php" />
+    <Compile Include="app\Imports\CoursesImport.php" />
     <Compile Include="app\Imports\StudentsImport.php" />
+    <Compile Include="app\Imports\UniversityClassesImport.php" />
+    <Compile Include="app\Imports\UsersImport.php" />
     <Compile Include="app\Jobs\NotifyUserOfCompletedExport.php" />
     <Compile Include="app\Jobs\NotifyUserOfCompletedImport.php" />
     <Compile Include="app\Mail\FileExported.php" />
@@ -121,6 +131,7 @@
     <Compile Include="app\Models\CourseClass.php" />
     <Compile Include="app\Models\Degree.php" />
     <Compile Include="app\Models\Faculty.php" />
+    <Compile Include="app\Models\FailedJob.php" />
     <Compile Include="app\Models\Score.php" />
     <Compile Include="app\Models\ScoreColumn.php" />
     <Compile Include="app\Models\Specialization.php" />
@@ -188,6 +199,7 @@
     <Compile Include="database\migrations\2019_11_25_131000_create_score_columns_table.php" />
     <Compile Include="database\migrations\2019_11_25_131121_create_course_class_score_column_table.php" />
     <Compile Include="database\migrations\2019_11_25_132228_create_scores_table.php" />
+    <Compile Include="database\migrations\2019_12_27_131223_create_jobs_table.php" />
     <Compile Include="database\seeds\AcademicRanksTableSeeder.php" />
     <Compile Include="database\seeds\CourseClassesTableSeeder.php" />
     <Compile Include="database\seeds\CoursesTableSeeder.php" />

@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('university_class_id')->references('id')->on('university_classes');
+            $table->foreign('university_class_id')->references('id')->on('university_classes')->onDelete('cascade');
         });
     }
 

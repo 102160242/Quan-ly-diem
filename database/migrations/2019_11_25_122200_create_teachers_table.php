@@ -23,7 +23,7 @@ class CreateTeachersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('academic_rank_id')->references('id')->on('academic_ranks')->onDelete('set null');
             $table->foreign('degree_id')->references('id')->on('degrees')->onDelete('set null');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('set null');

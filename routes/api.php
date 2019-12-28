@@ -47,6 +47,11 @@ Route::group([
         Route::apiResource('score_columns', 'ScoreColumnController')->only(['destroy']);
         Route::post('data/import', 'ImportController@import');
         Route::post('data/export', 'ExportController@export');
+
+        Route::group(['prefix' => 'dashboard'], function () {
+            Route::get('failed_jobs', 'DashboardController@failedJobs');
+            Route::get('statistics', 'DashboardController@statistics');
+        });
     });
 
     //Route::get('students/export/download/{id}', 'StudentController@downloadExportedFile');

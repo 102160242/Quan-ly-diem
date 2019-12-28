@@ -15,7 +15,7 @@ class Teacher extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => 1,
+            "id" => $this->id,
             "user" => new User($this->whenLoaded('user')),
             "academic_rank" => $this->academicRank != null ? $this->academicRank->name : null,
             "degree" => $this->degree != null ? $this->degree->name : null,

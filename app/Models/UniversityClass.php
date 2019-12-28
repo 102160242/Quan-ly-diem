@@ -8,6 +8,10 @@ class UniversityClass extends Model
 {
     //protected $table = 'classes';
     public $timestamps = false;
+
+    protected $fillable = [
+        'name', 'faculty_id', 'academic_year'
+    ];
     public function students()
     {
         return $this->hasMany(Student::class)/*->withDefault(function () {

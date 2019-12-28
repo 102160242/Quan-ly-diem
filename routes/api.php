@@ -33,6 +33,8 @@ Route::group([
         Route::apiResource('classes', 'UniversityClassController');
 
         Route::get('students/meta', 'StudentController@meta');
+        //Route::get('students/export', 'StudentController@export');
+        //Route::get('students/import', 'StudentController@import');
         Route::apiResource('students', 'StudentController');
         Route::apiResource('courses', 'CourseController');
         Route::apiResource('teachers', 'TeacherController');
@@ -41,6 +43,11 @@ Route::group([
         Route::apiResource('courseclasses', 'CourseClassController');
         Route::apiResource('scores', 'ScoreController')->only(['index', 'store']);
         Route::apiResource('score_columns', 'ScoreColumnController')->only(['destroy']);
+
+        Route::post('data/import', 'ImportController@import');
+        Route::post('data/export', 'ExportController@export');
     });
+
+    //Route::get('students/export/download/{id}', 'StudentController@downloadExportedFile');
 });
 

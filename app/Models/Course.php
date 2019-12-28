@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $fillable = ['name'];
     /**
      * Summary of courseClasses
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

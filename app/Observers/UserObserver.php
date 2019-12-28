@@ -42,7 +42,7 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        //
+
     }
 
     /**
@@ -65,5 +65,11 @@ class UserObserver
     public function forceDeleted(User $user)
     {
         //
+    }
+    public function deleleting(User $user)
+    {
+        $user->roles->delete();
+        if(!!$user->teacherProfile)
+            $user->teacherProfile->delete();
     }
 }

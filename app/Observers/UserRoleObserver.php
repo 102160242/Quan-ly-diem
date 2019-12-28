@@ -34,13 +34,17 @@ class UserRoleObserver
     {
         if(!$userRole->is_teacher)
         {
-            $userRole->user()->teacherProfile()->delete();
+            if(!!$userRole->user->teacherProfile)
+                $userRole->user->teacherProfile->delete();
         }
         else // Neu cap nhat User la giao vien thi tao profile moi
         {
-            Teacher::create([
-                'user_id' => $userRole->user_id
-            ]);
+            if($userRole->user->teacherProfile == null)
+            {
+                Teacher::create([
+                    'user_id' => $userRole->user_id
+                ]);
+            }
         }
     }
 

@@ -53,10 +53,10 @@ class UserController extends Controller
         {
             //if(true)
             //{
-            if($request->get('is_teacher'))
-                $user->roles->setTeacher(1);
-            if($request->get('is_admin'))
+            if($request->get('is_admin') == "true")
                 $user->roles->setAdmin(1);
+            if($request->get('is_teacher') == "true")
+                $user->roles->setTeacher(1);
 
             //}
             return response()->success(new UserResource($user), ["Tạo Người dùng mới thành công."], 201);
@@ -98,11 +98,11 @@ class UserController extends Controller
         }
         else{
             $user->update($request->except(['is_teacher', 'is_admin', '_method']));
-            if($request->get('is_teacher'))
+            if($request->get('is_teacher') == "true")
                 $user->roles->setTeacher();
             else
                 $user->roles->unsetTeacher();
-            if($request->get('is_admin'))
+            if($request->get('is_admin') == "true")
                 $user->roles->setAdmin();
             else
                 $user->roles->unsetAdmin();

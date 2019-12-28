@@ -38,6 +38,7 @@ Route::group([
         //Route::get('students/import', 'StudentController@import');
         Route::apiResource('students', 'StudentController');
         Route::apiResource('courses', 'CourseController');
+        Route::get('teachers/meta', 'TeacherController@meta');
         Route::apiResource('teachers', 'TeacherController');
 
         Route::get('courseclasses/meta', 'CourseClassController@meta');

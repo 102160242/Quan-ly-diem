@@ -57,4 +57,16 @@ class Teacher extends Model
     {
         return $this->hasMany(CourseClass::class);
     }
+
+    public static function meta()
+    {
+        $data = [];
+        $faculties = Faculty::all();
+        $data['faculties'] = $faculties;
+        $academicrank = AcademicRank::all();
+        $data['academicranks'] = $academicrank;
+        $degrees = Degree::all();
+        $data['degrees'] = $degrees;
+        return $data;
+    }
 }

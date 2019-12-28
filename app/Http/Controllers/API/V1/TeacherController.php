@@ -81,4 +81,10 @@ class TeacherController extends Controller
         $teacher->delete();
         return response()->success("", "Đã xoá thành công.");
     }
+
+    public function meta()
+    {
+        $data = Teacher::meta();
+        return response()->success($data);
+    }
 }

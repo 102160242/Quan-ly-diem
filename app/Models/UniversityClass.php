@@ -8,10 +8,6 @@ class UniversityClass extends Model
 {
     //protected $table = 'classes';
 
-    protected $fillable = [
-        'name', 'faculty_id', 'academic_year'
-    ];
-
     public $timestamps = false;
 
     protected $fillable = [

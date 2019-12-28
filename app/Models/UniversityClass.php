@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class UniversityClass extends Model
 {
     //protected $table = 'classes';
+
+    protected $fillable = [
+        'name', 'faculty_id', 'academic_year'
+    ];
+
     public $timestamps = false;
     public function students()
     {
@@ -25,5 +30,12 @@ class UniversityClass extends Model
     public function totalStudents()
     {
         return $this->hasMany(Student::class)->count();
+    }
+    public static function meta()
+    {
+        $data = [];
+        $faculties = Faculty::all();
+        $data['meta'] = $faculties;
+        return $data;
     }
 }

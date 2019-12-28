@@ -37,7 +37,7 @@ class UserController extends Controller
     {
 
         if(Gate::denies('users.create')) return $this->notAuthorized();
-        
+
         if($request->validator->fails())
         {
             return response()->error($request->validator->errors()->all(), 422);
@@ -90,16 +90,23 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         if(Gate::denies('users.update', $user)) return $this->notAuthorized();
-        
-        $user->update($request->except(['is_teacher', 'is_admin', '_method']));
-        if($request->get('is_teacher'))
-            $user->roles->setTeacher();
-        else
-            $user->roles->unsetTeacher();
-        if($request->get('is_admin'))
-            $user->roles->setAdmin();
-        else
-            $user->roles->unsetAdmin();
+
+        if(isset($request['password']))
+        {
+            User::findOrFail($request->get('id'))->update(['password' => bcrypt($request->password)]);
+            return response()->success(new UserResource($user));
+        }
+        else{
+            $user->update($request->except(['is_teacher', 'is_admin', '_method']));
+            if($request->get('is_teacher'))
+                $user->roles->setTeacher();
+            else
+                $user->roles->unsetTeacher();
+            if($request->get('is_admin'))
+                $user->roles->setAdmin();
+            else
+                $user->roles->unsetAdmin();
+        }
         return response()->success(new UserResource($user));
     }
 

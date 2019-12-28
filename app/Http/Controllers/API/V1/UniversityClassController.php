@@ -36,10 +36,10 @@ class UniversityClassController extends Controller
     public function store(Request $request)
     {
         if(Gate::denies('university_classes.create')) return $this->notAuthorized();
-        if($request->validator->fails())
-        {
-            return response()->error($request->validator->errors()->all(), 422);
-        }
+        //if($request->validator->fails())
+        //{
+        //    return response()->error($request->validator->errors()->all(), 422);
+        //}
         $class = UniversityClass::create($request->all());
         if($class != null)
             return response()->success(new UniversityClassResource($class), ["Tạo Lớp mới thành công."], 201);
@@ -84,5 +84,11 @@ class UniversityClassController extends Controller
         if(Gate::denies('university_classes.delete', $class)) return $this->notAuthorized();
         $class->delete();
         return response()->success("", "Đã xoá thành công.");
+    }
+
+    public function meta()
+    {
+        $data = UniversityClass::meta();
+        return response()->success($data);
     }
 }

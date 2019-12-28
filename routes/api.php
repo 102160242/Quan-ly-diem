@@ -30,6 +30,7 @@ Route::group([
     //Route::group([], function () {
         Route::get('users/me', 'UserController@me');
         Route::apiResource('users', 'UserController');
+        Route::get('classes/meta', 'UniversityClassController@meta');
         Route::apiResource('classes', 'UniversityClassController');
 
         Route::get('students/meta', 'StudentController@meta');
@@ -41,6 +42,7 @@ Route::group([
         Route::apiResource('courseclasses', 'CourseClassController');
         Route::apiResource('scores', 'ScoreController')->only(['index', 'store']);
         Route::apiResource('score_columns', 'ScoreColumnController')->only(['destroy']);
+
     });
 });
 

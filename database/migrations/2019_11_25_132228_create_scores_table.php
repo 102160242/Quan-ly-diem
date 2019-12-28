@@ -18,6 +18,7 @@ class CreateScoresTable extends Migration
             $table->unsignedBigInteger('score_column_id');
             $table->unsignedBigInteger('student_id');
             $table->float('score')->nullable();
+            $table->softDeletes();
 
             $table->foreign('score_column_id')->references('id')->on('score_columns')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

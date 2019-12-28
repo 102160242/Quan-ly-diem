@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class CourseClass extends Model
 {
+    use SoftDeletes;
+    use SoftCascadeTrait;
 
+    protected $softCascade = ['scoreColumns'];
     protected $fillable = [
         'course_id', 'name', 'credits', 'year', 'teacher_id', 'semester'
     ];

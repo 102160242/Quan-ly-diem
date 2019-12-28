@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Student extends Model
 {
     use SoftDeletes;
+    protected $fillable = [
+        'name', 'gender', 'birthday', 'phone_number', 'email', 'university_class_id'
+    ];
     public function getAllCourseClassesScores() // Lấy toàn bộ điểm của các khoá học của sv
     {
         $data = [];

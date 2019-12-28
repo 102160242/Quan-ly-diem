@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Student as StudentResource;
 use App\Http\Requests\Students\Create as CreateStudentRequest;
 use Gate;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+
 class StudentController extends Controller
 {
     /**
@@ -91,4 +94,34 @@ class StudentController extends Controller
         $data = Student::meta();
         return response()->success($data);
     }
+    /**
+     * Summary of import
+     */
+    //public function import()
+    //{
+    //    (new \App\Imports\StudentsImport)->queue('students.xlsx')->chain([
+    //        new \App\Jobs\NotifyUserOfCompletedImport("doanhuuhoa1603@gmail.com", "Sinh Viên")
+    //    ]);
+    //    //Excel::queueImport(new \App\Imports\StudentsImport, 'students.xlsx');
+    //    return response()->success([], "Đã bắt đầu quá trình Import!");
+    //}
+    //public function export()
+    //{
+    //    $id = md5(rand());
+    //    $filename = "export\\". $id .".xlsx";
+
+    //    (new \App\Exports\StudentsExport)->store($filename)->chain([
+    //        (new \App\Jobs\NotifyUserOfCompletedExport("thienhuong2031998@gmail.com", $filename, "Danh sách Sinh Viên.xlsx"))
+    //        //new NotifyUserOfCompletedExport(request()->user()),
+    //    ]);
+    //    //$url = Storage::temporaryUrl(
+    //    //    'public\students.xlsx', now()->addMinutes(5)
+    //    //);
+    //    //$data = ['link' => url("/students/export/download/".$id)];
+    //    return response()->success([], "Đã bắt đầu quá trình Export, bạn sẽ được gửi mail thông báo sau khi quá trình hoàn tất!");
+    //}
+    //public function downloadExportedFile($id)
+    //{
+    //    return response()->download(Storage::getDriver()->getAdapter()->applyPathPrefix("export\\".$id.".xlsx"), "Danh sách Sinh Viên.xlsx")->deleteFileAfterSend();
+    //}
 }

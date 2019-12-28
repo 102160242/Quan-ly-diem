@@ -21,6 +21,7 @@
     <Folder Include="app\" />
     <Folder Include="app\Console\" />
     <Folder Include="app\Exceptions\" />
+    <Folder Include="app\Exports\" />
     <Folder Include="app\Http\" />
     <Folder Include="app\Http\Controllers\" />
     <Folder Include="app\Http\Controllers\API\" />
@@ -32,6 +33,9 @@
     <Folder Include="app\Helpers\" />
     <Folder Include="app\Http\Requests\Students\" />
     <Folder Include="app\Http\Resources\" />
+    <Folder Include="app\Imports\" />
+    <Folder Include="app\Jobs\" />
+    <Folder Include="app\Mail\" />
     <Folder Include="app\Models\" />
     <Folder Include="app\Observers\" />
     <Folder Include="app\Policies\" />
@@ -51,6 +55,8 @@
     <Folder Include="resources\lang\en\" />
     <Folder Include="resources\sass\" />
     <Folder Include="resources\views\" />
+    <Folder Include="resources\views\emails\" />
+    <Folder Include="resources\views\emails\file\" />
     <Folder Include="routes\" />
     <Folder Include="storage\" />
     <Folder Include="storage\app\" />
@@ -69,9 +75,11 @@
   <ItemGroup>
     <Compile Include="app\Console\Kernel.php" />
     <Compile Include="app\Exceptions\Handler.php" />
+    <Compile Include="app\Exports\StudentsExport.php" />
     <Compile Include="app\Http\Controllers\API\V1\AuthController.php" />
     <Compile Include="app\Http\Controllers\API\V1\CourseClassController.php" />
     <Compile Include="app\Http\Controllers\API\V1\CourseController.php" />
+    <Compile Include="app\Http\Controllers\API\V1\ImportController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreColumnController.php" />
     <Compile Include="app\Http\Controllers\API\V1\ScoreController.php" />
     <Compile Include="app\Http\Controllers\API\V1\StudentController.php" />
@@ -103,6 +111,11 @@
     <Compile Include="app\Http\Resources\Teacher.php" />
     <Compile Include="app\Http\Resources\UniversityClass.php" />
     <Compile Include="app\Http\Resources\User.php" />
+    <Compile Include="app\Imports\StudentsImport.php" />
+    <Compile Include="app\Jobs\NotifyUserOfCompletedExport.php" />
+    <Compile Include="app\Jobs\NotifyUserOfCompletedImport.php" />
+    <Compile Include="app\Mail\FileExported.php" />
+    <Compile Include="app\Mail\FileImported.php" />
     <Compile Include="app\Models\AcademicRank.php" />
     <Compile Include="app\Models\Course.php" />
     <Compile Include="app\Models\CourseClass.php" />
@@ -119,7 +132,11 @@
     <Compile Include="app\Models\UserRole.php" />
     <Compile Include="app\Observers\UserObserver.php" />
     <Compile Include="app\Observers\UserRoleObserver.php" />
+    <Compile Include="app\Policies\CourseClassPolicy.php" />
     <Compile Include="app\Policies\CoursePolicy.php" />
+    <Compile Include="app\Policies\ScorePolicy.php" />
+    <Compile Include="app\Policies\StudentPolicy.php" />
+    <Compile Include="app\Policies\TeacherPolicy.php" />
     <Compile Include="app\Policies\UniversityClassPolicy.php" />
     <Compile Include="app\Policies\UserPolicy.php" />
     <Compile Include="app\Providers\AppServiceProvider.php" />
@@ -186,6 +203,8 @@
     <Compile Include="resources\lang\en\pagination.php" />
     <Compile Include="resources\lang\en\passwords.php" />
     <Compile Include="resources\lang\en\validation.php" />
+    <Compile Include="resources\views\emails\file\exported.blade.php" />
+    <Compile Include="resources\views\emails\file\imported.blade.php" />
     <Compile Include="resources\views\index.blade.php" />
     <Compile Include="routes\api.php" />
     <Compile Include="routes\channels.php" />

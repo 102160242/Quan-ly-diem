@@ -13,6 +13,10 @@ class UniversityClass extends Model
     ];
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'name', 'faculty_id', 'academic_year'
+    ];
     public function students()
     {
         return $this->hasMany(Student::class)/*->withDefault(function () {

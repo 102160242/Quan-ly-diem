@@ -33,10 +33,10 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         if(Gate::denies('courses.create')) return $this->notAuthorized();
-        if($request->validator->fails())
-        {
-            return response()->error($request->validator->errors()->all(), 422);
-        }
+        //if($request->validator->fails())
+        //{
+        //    return response()->error($request->validator->errors()->all(), 422);
+        //}
         $course = Course::create($request->all());
         if($course != null)
             return response()->success(new CourseResource($course), ["Tạo Học phần mới thành công."], 201);

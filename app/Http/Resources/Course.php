@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CourseClass as CourseClassResource;
 
 class Course extends JsonResource
 {
@@ -17,6 +18,7 @@ class Course extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "course_classes" => CourseClassResource::collection($this->whenLoaded('courseClasses')),
             "total_course_classes" => $this->courseClasses->count(),
         ];
     }

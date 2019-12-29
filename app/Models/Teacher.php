@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Teacher extends Model
 {
+    use SoftDeletes;
+    use SoftCascadeTrait;
+    protected $softCascade = ['courseClasses'];
+
     protected $fillable = [
         'user_id', 'academic_rank_id', 'degree_id', 'specialization_id', 'faculty_id'
     ];

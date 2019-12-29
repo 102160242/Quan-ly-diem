@@ -53,7 +53,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         if(Gate::denies('courses.view', $course)) return $this->notAuthorized();
-        return response()->success(new CourseResource($course));
+        return response()->success(new CourseResource($course->load('courseClasses')));
     }
 
     /**

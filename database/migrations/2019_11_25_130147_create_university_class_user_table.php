@@ -17,7 +17,7 @@ class CreateUniversityClassUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('university_class_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete("set null");
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('university_class_id')->references('id')->on('university_classes')->onDelete('cascade');
 
             $table->unique(['user_id', 'university_class_id']);

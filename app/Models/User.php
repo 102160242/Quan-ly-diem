@@ -7,11 +7,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    //use SoftDeletes;
+    use SoftDeletes;
+    use SoftCascadeTrait;
+    protected $softCascade = ['teacherProfile', 'roles'];
 
     /**
      * The attributes that are mass assignable.

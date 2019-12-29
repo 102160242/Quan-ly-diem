@@ -18,6 +18,9 @@ class UserRoleObserver
         // Tu dong tao Profile cho giang vien khi mot user duoc doi quyen thanh giang vien
         if($userRole->is_teacher)
         {
+            $teacher = Teacher::withTrashed()->where('user_id', $userRole->user_id)->first();
+            if($teacher != null) $teacher->restore();
+            else
             Teacher::create([
                 'user_id' => $userRole->user_id
             ]);
@@ -39,6 +42,9 @@ class UserRoleObserver
         }
         else // Neu cap nhat User la giao vien thi tao profile moi
         {
+            $teacher = Teacher::withTrashed()->where('user_id', $userRole->user_id)->first();
+            if($teacher != null) $teacher->restore();
+            else
             if($userRole->user->teacherProfile == null)
             {
                 Teacher::create([

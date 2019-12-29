@@ -37,10 +37,10 @@ class StudentController extends Controller
     public function store(CreateStudentRequest $request)
     {
         if(Gate::denies('students.create')) return $this->notAuthorized();
-        if($request->validator->fails())
-        {
-            return response()->error($request->validator->errors()->all(), 422);
-        }
+        //if($request->validator->fails())
+        //{
+        //    return response()->error($request->validator->errors()->all(), 422);
+        //}
         $student = Student::create($request->all());
         if($student != null)
             return response()->success(new StudentResource($student), ["Tạo Sinh viên mới thành công."], 201);

@@ -15,4 +15,11 @@ class Course extends Model
     {
         return $this->hasMany(CourseClass::class);
     }
+
+    public static function meta(){
+        $data = [];
+        $universityclass = UniversityClass::select('id', 'name')->get()->toArray();
+        $data['university_class'] = $universityclass;
+        return $data;
+    }
 }

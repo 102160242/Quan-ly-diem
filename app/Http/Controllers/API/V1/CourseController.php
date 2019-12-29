@@ -82,4 +82,10 @@ class CourseController extends Controller
         $course->delete();
         return response()->success("", "Đã xoá thành công.");
     }
+
+   public function meta()
+   {
+       $data = Course::meta();
+       return response()->success($data);
+   }
 }
